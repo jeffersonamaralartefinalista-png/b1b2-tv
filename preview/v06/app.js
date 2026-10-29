@@ -1,0 +1,18 @@
+const player=document.querySelector('#player'),catalog=document.querySelector('#catalog'),search=document.querySelector('#search'),status=document.querySelector('#status'),current=document.querySelector('#current'),category=document.querySelector('#category'),favoritesOnly=document.querySelector('#favorites-only'),count=document.querySelector('#count');
+let channels=[],hls=null,saved=[];try{saved=JSON.parse(localStorage.getItem('b1b2-tv-preview-v06-favoritos')||localStorage.getItem('b1b2-tv-preview-v06-legado')||'[]')}catch{}
+const favorites=new Set(Array.isArray(saved)?saved:[]);
+player.addEventListener('error',()=>status.textContent='Falha na reprodução. Confira sua conexão.');
+function safeChannel(c){try{return Boolean(c.id&&c.name&&c.category&&new URL(c.url).protocol==='https:')}catch{return false}}
+function play(ch){if(hls){hls.destroy();hls=null}player.pause();player.removeAttribute('src');player.load();current.textContent=ch.name;status.textContent='Carregando transmissão…';
+if(player.canPlayType('application/vnd.apple.mpegurl'))player.src=ch.url;
+else if(window.Hls?.isSupported()){hls=new Hls();hls.loadSource(ch.url);hls.attachMedia(player);hls.on(Hls.Events.ERROR,(_,d)=>{if(d.fatal){status.textContent='Transmissão indisponível.';hls.destroy();hls=null}})}
+else{status.textContent='Navegador sem suporte a HLS.';return}
+player.play().then(()=>status.textContent=ch.note||'Reproduzindo').catch(()=>status.textContent='Toque em ▶ para iniciar a reprodução.')}
+function render(){const q=search.value.toLocaleLowerCase('pt-BR').trim();catalog.replaceChildren();
+const selected=channels.filter(c=>(!q||c.name.toLocaleLowerCase('pt-BR').includes(q))&&(!category.value||c.category===category.value)&&(!favoritesOnly.checked||favorites.has(c.id)));
+count.textContent=selected.length+' '+(selected.length===1?'transmissão':'transmissões');
+for(const ch of selected){const card=document.createElement('div');card.className='card';const name=document.createElement('strong');name.textContent=ch.name;const desc=document.createElement('span');desc.textContent=ch.category;const row=document.createElement('div');row.className='card-actions';const btn=document.createElement('button');btn.textContent='▶ Assistir';btn.onclick=()=>play(ch);const fav=document.createElement('button');fav.textContent=favorites.has(ch.id)?'★ Favorito':'☆ Favoritar';fav.onclick=()=>{favorites.has(ch.id)?favorites.delete(ch.id):favorites.add(ch.id);localStorage.setItem('b1b2-tv-preview-v06-favoritos',JSON.stringify([...favorites]));render()};row.append(btn,fav);card.append(name,desc,row);catalog.append(card)}
+if(!selected.length){const p=document.createElement('p');p.textContent='Nenhuma transmissão encontrada.';catalog.append(p)}}
+search.addEventListener('input',render);category.addEventListener('change',render);favoritesOnly.addEventListener('change',render);
+fetch('../../catalog.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Catálogo indisponível');return r.json()}).then(data=>{if(!Array.isArray(data))throw Error('Formato inválido');channels=data.filter(safeChannel);for(const item of [...new Set(channels.map(c=>c.category))].sort()){const option=document.createElement('option');option.value=item;option.textContent=item;category.append(option)}render()}).catch(()=>status.textContent='Não foi possível carregar o catálogo.');
+if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('../../sw.js').catch(()=>{});
