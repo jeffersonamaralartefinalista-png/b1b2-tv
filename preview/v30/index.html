@@ -17,7 +17,7 @@ const verified=['TV Câmara','TV Brasil','TV Cultura','Cultura Fast','Band RS'];
 const keyOf=name=>name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s*\((?:\d{3,4}p|\d+k)\)/gi,'').replace(/\s*\[(?:not 24\/7|geo-blocked)\]/gi,'').replace(/\s+/g,' ').trim();
 function insert(name,id,url,group){const key=keyOf(name);if(!key)return;let c=channels.get(key);if(!c){c={name:name.replace(/\s*\((?:\d{3,4}p|\d+k)\)/gi,'').trim(),ids:new Set(),urls:[],groups:new Set()};channels.set(key,c);}if(id)c.ids.add(id);if(url&&!c.urls.includes(url))c.urls.push(url);c.groups.add(group);}
 for(const c of sources)insert(c.name,c.id,c.url,'br');
-insert('Bob Esponja (fonte a recuperar)','',null,'kids'); 
+insert('Bob Esponja','',null,'kids'); 
 let view='all';const search=document.getElementById('search'),items=document.getElementById('items'),count=document.getElementById('count'),notice=document.getElementById('notice'),vid=document.getElementById('player');let active=null,idx=0,hls=null;
 function titleOf(c){return c.name;}
 function persist(){localStorage.setItem(storedKey,JSON.stringify([...selected]));summary();}
