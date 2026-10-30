@@ -16,3 +16,25 @@ if(!selected.length){const p=document.createElement('p');p.textContent='Nenhuma 
 search.addEventListener('input',render);category.addEventListener('change',render);favoritesOnly.addEventListener('change',render);
 fetch('./catalog.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Catálogo indisponível');return r.json()}).then(data=>{if(!Array.isArray(data))throw Error('Formato inválido');channels=data.filter(safeChannel);for(const item of [...new Set(channels.map(c=>c.category))].sort()){const option=document.createElement('option');option.value=item;option.textContent=item;category.append(option)}render()}).catch(()=>status.textContent='Não foi possível carregar o catálogo.');
 if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
+
+/* Navegação espacial para TV: setas percorrem controles visíveis; Enter/OK ativa. */
+(function initTvRemote(){
+  const selectors='button:not(:disabled), input:not(:disabled), select:not(:disabled), video[controls]';
+  function controls(){return [...document.querySelectorAll(selectors)].filter(el=>{const r=el.getBoundingClientRect();return r.width>0&&r.height>0})}
+  function move(key){
+    const items=controls();if(!items.length)return;
+    const active=document.activeElement;
+    if(!items.includes(active)){items[0].focus();return}
+    const a=active.getBoundingClientRect(),ax=a.left+a.width/2,ay=a.top+a.height/2;
+    const candidates=items.filter(el=>el!==active).map(el=>{const r=el.getBoundingClientRect(),dx=r.left+r.width/2-ax,dy=r.top+r.height/2-ay;return {el,dx,dy}}).filter(x=>key==='ArrowRight'?x.dx>5:key==='ArrowLeft'?x.dx< -5:key==='ArrowDown'?x.dy>5:x.dy< -5);
+    candidates.sort((a,b)=>{const horizontal=key==='ArrowLeft'||key==='ArrowRight';const primary=horizontal?'dx':'dy',cross=horizontal?'dy':'dx';return Math.abs(a[primary])+Math.abs(a[cross])*1.6-(Math.abs(b[primary])+Math.abs(b[cross])*1.6)});
+    if(candidates[0]){candidates[0].el.focus({preventScroll:true});candidates[0].el.scrollIntoView({block:'nearest',inline:'nearest',behavior:'smooth'})}
+  }
+  document.addEventListener('keydown',event=>{
+    if(!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.key))return;
+    const active=document.activeElement;
+    if(active?.matches('input,select,video'))return;
+    event.preventDefault();move(event.key);
+  });
+  document.addEventListener('DOMContentLoaded',()=>{document.body.classList.add('tv-remote-ready')});
+})();
