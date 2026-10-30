@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "description": "Catálogo VOD de fontes verificadas. A exibição de links externos não concede licença de incorporação.",
+  "movies": [],
+  "series": [],
+  "kids": [],
+  "item_example": {
+    "id": "id-estavel",
+    "title": "Título",
+    "genre": "Aventura",
+    "year": null,
+    "synopsis": "Resumo",
+    "poster_url": null,
+    "official_url": null,
+    "playback_type": "external_link",
+    "rights_status": "pending",
+    "age_rating": null,
+    "episodes": []
+  }
+}
