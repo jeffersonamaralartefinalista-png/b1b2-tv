@@ -1,0 +1,11 @@
+{
+  "id": "com.b1b2tv.familiar",
+  "version": "0.1.0",
+  "vendor": "B1&B2 Tv",
+  "type": "web",
+  "main": "index.html",
+  "title": "B1&B2 Tv",
+  "icon": "icon.png",
+  "largeIcon": "largeIcon.png",
+  "requiredMemory": 64
+}
