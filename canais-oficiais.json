@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "description": "Referências de players oficiais provenientes do catálogo Lovable. São links externos, não autorização de incorporação ou retransmissão.",
+  "channels": [
+    {
+      "id": "official-1",
+      "name": "TV Câmara",
+      "category": "Legislativo",
+      "official_url": "https://www2.camara.leg.br/camaranoticias/tv/embedAoVivo.html",
+      "status": "acesso_oficial_referenciado",
+      "embed_permission": "pending"
+    },
+    {
+      "id": "official-2",
+      "name": "TV Brasil",
+      "category": "Pública",
+      "official_url": "https://aovivo.ebc.com.br/embed-tvbrasil.html",
+      "status": "acesso_oficial_referenciado",
+      "embed_permission": "pending"
+    },
+    {
+      "id": "official-3",
+      "name": "TV Cultura",
+      "category": "Cultura",
+      "official_url": "https://culturaplay.tvcultura.com.br/channels/14/embed",
+      "status": "acesso_oficial_referenciado",
+      "embed_permission": "pending"
+    },
+    {
+      "id": "official-4",
+      "name": "Cultura Fast",
+      "category": "Infantil",
+      "official_url": "https://culturaplay.tvcultura.com.br/channels/53/embed",
+      "status": "acesso_oficial_referenciado",
+      "embed_permission": "pending"
+    },
+    {
+      "id": "official-5",
+      "name": "Band RS",
+      "category": "Regional RS",
+      "official_url": "https://beyond.spalla.io/player/?live=019a797e-eeb8-7eda-9518-132403ccb160",
+      "status": "acesso_oficial_referenciado",
+      "embed_permission": "pending"
+    }
+  ]
+}
