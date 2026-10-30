@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "description": "Manifesto de fontes V41. Somente fontes verificadas e integráveis. Ausência de fonte não significa vídeo disponível.",
+  "entries": {
+    "series:the-last-of-us:s1:e1": {
+      "title": "The Last of Us — T1E1",
+      "sources": []
+    },
+    "movie:khumba:2013": {
+      "title": "Khumba (2013)",
+      "sources": []
+    }
+  }
+}
