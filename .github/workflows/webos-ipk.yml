@@ -1,0 +1,42 @@
+name: Gerar aplicativo LG webOS IPK
+on:
+  push:
+    branches: [feature/lg-webos-dev-package-20261030]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Instalar CLI webOS
+        run: npm install --global @webos-tools/cli
+      - name: Montar app webOS
+        run: |
+          mkdir -p build/webos
+          cp index.html app.js tv-theme.css catalog.json manifest.webmanifest icon.svg sw.js build/webos/
+          cp webos/appinfo.json build/webos/appinfo.json
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image,ImageDraw
+          for name,size in [('icon.png',80),('largeIcon.png',130)]:
+              im=Image.new('RGB',(size,size),'#181e47')
+              d=ImageDraw.Draw(im)
+              d.rounded_rectangle((4,4,size-4,size-4),radius=size//5,fill='#5937ad')
+              d.text((size//4,size//3),'B2',fill='white')
+              im.save(Path('build/webos')/name)
+          PY
+      - name: Empacotar IPK
+        run: |
+          mkdir -p output
+          ares-package build/webos -o output
+          test -n "$(find output -maxdepth 1 -name '*.ipk' -print -quit)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: b1b2-tv-lg-webos-ipk
+          path: output/*.ipk
+          retention-days: 30
