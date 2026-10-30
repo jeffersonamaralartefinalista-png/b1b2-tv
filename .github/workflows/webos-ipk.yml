@@ -20,6 +20,7 @@ jobs:
           mkdir -p build/webos
           cp index.html app.js tv-theme.css catalog.json manifest.webmanifest icon.svg sw.js build/webos/
           cp webos/appinfo.json build/webos/appinfo.json
+          python3 -m pip install --user pillow
           python3 - <<'PY'
           from pathlib import Path
           from PIL import Image,ImageDraw
