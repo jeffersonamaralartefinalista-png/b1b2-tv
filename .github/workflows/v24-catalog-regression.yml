@@ -1,0 +1,17 @@
+name: B1B2 V24 catalog regression
+on:
+  pull_request:
+  push:
+    branches:
+      - 'audit/**'
+  workflow_dispatch:
+jobs:
+  validate-v24:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate approved V24 catalog
+        run: python3 scripts/check_v24_catalog.py
