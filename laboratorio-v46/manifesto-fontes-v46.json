@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "revision": "v46-open-catalog-1",
+  "description": "Catálogo aberto experimental. IDs próprios; nenhuma equivalência TVmaze inferida.",
+  "entries": {
+    "open:blender:wing-it-2023": {
+      "type": "movie",
+      "contentId": "blender:wing-it-2023",
+      "title": "Wing It!",
+      "year": 2023,
+      "form": "Curta-metragem",
+      "durationSeconds": 237.917,
+      "audio": "Sem diálogos; trilha e efeitos",
+      "language": "zxx",
+      "summary": "Um engenheiro e um aspirante a piloto acabam lançados em uma nave fora de controle. Curta completo da Blender Studio.",
+      "officialPage": "https://studio.blender.org/projects/wing-it/",
+      "rights": {
+        "attribution": "(CC) Blender Foundation | studio.blender.org",
+        "license": "CC BY 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "evidenceUrl": "https://studio.blender.org/projects/wing-it/pages/licensing/",
+        "modified": false
+      },
+      "sources": [
+        {
+          "url": "https://video.blender.org/object-storage/web_videos/1be4c93c-1fd2-498d-adc7-50126823033e-480.mp4",
+          "label": "MP4 oficial · 480p",
+          "format": "mp4",
+          "integrationAllowed": true
+        },
+        {
+          "url": "https://video.blender.org/object-storage/web_videos/9178581e-4d24-4a67-adf2-a30eadfaf32f-1080.mp4",
+          "label": "MP4 oficial · 1080p",
+          "format": "mp4",
+          "integrationAllowed": true
+        }
+      ],
+      "key": "open:blender:wing-it-2023",
+      "verification": {
+        "date": "2026-10-30",
+        "browser": "Chrome remoto",
+        "safari": "Pendente",
+        "hosting": "Oficial"
+      }
+    },
+    "open:morevna:pepper-carrot:ep3": {
+      "type": "episode",
+      "contentId": "morevna:pepper-carrot:ep3",
+      "seriesId": "morevna:pepper-carrot-motion-comic",
+      "seriesTitle": "Pepper & Carrot Motion Comic",
+      "episodeNumber": 3,
+      "title": "The Secret Ingredients",
+      "year": 2022,
+      "form": "Episódio completo de motion comic",
+      "durationSeconds": 205.056,
+      "audio": "Inglês · sem dublagem PT-BR validada",
+      "language": "en",
+      "summary": "Pepper vai ao mercado e procura ingredientes secretos. Episódio 3 oficial da adaptação animada; a numeração original foi preservada.",
+      "officialPage": "https://morevnaproject.org/2022/10/28/pepper-carrot-episode-3/",
+      "rights": {
+        "attribution": "Morevna Project; história e arte original de David Revoy. Créditos completos preservados no vídeo.",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "evidenceUrl": "https://gitlab.com/OpenSourceAnimation/pepper-and-carrot-ep03",
+        "modified": false
+      },
+      "sources": [
+        {
+          "url": "https://archive.org/download/pepper-carrot-episode-3-the-secret-ingredients-english/79780d2c-419b-42a3-adb5-85ae2aea4d1e-1080.mp4",
+          "label": "MP4 · 1080p · cópia CC no Internet Archive",
+          "format": "mp4",
+          "integrationAllowed": true
+        }
+      ],
+      "key": "open:morevna:pepper-carrot:ep3",
+      "verification": {
+        "date": "2026-10-30",
+        "browser": "Chrome remoto",
+        "safari": "Pendente",
+        "hosting": "Mirror público; identidade confrontada com páginas oficiais e créditos"
+      }
+    },
+    "open:morevna:pepper-carrot:ep4": {
+      "type": "episode",
+      "contentId": "morevna:pepper-carrot:ep4",
+      "seriesId": "morevna:pepper-carrot-motion-comic",
+      "seriesTitle": "Pepper & Carrot Motion Comic",
+      "episodeNumber": 4,
+      "title": "Stroke of Genius",
+      "year": 2022,
+      "form": "Episódio completo de motion comic",
+      "durationSeconds": 215.042,
+      "audio": "Inglês · sem dublagem PT-BR validada",
+      "language": "en",
+      "summary": "Pepper e Carrot em uma nova aventura de magia e comédia. Episódio 4 oficial da adaptação animada; sem temporada atribuída artificialmente.",
+      "officialPage": "https://morevnaproject.org/2022/11/27/peppercarrot-episode-4/",
+      "rights": {
+        "attribution": "Morevna Project; história e arte original de David Revoy. Créditos completos preservados no vídeo.",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "evidenceUrl": "https://gitlab.com/OpenSourceAnimation/pepper-and-carrot-ep04",
+        "modified": false
+      },
+      "sources": [
+        {
+          "url": "https://archive.org/download/pepper-carrot-episode-4-stroke-of-genius-1080p/Pepper%20%26%20Carrot%20Episode%204%3A%20Stroke%20of%20Genius%201080p.mp4",
+          "label": "MP4 · 1080p · cópia CC no Internet Archive",
+          "format": "mp4",
+          "integrationAllowed": true
+        }
+      ],
+      "key": "open:morevna:pepper-carrot:ep4",
+      "verification": {
+        "date": "2026-10-30",
+        "browser": "Chrome remoto",
+        "safari": "Pendente",
+        "hosting": "Mirror público; identidade confrontada com páginas oficiais e créditos"
+      }
+    }
+  }
+}
